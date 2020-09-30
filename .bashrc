@@ -14,12 +14,39 @@ set_pb_vars () {
 
 export PATH=$PATH:$HOME/work/phtest/phtest
 
+alias lg="git log --pretty=color"
+alias lgg="git log --graph --pretty=color"
+
 set_git_prompt () {
-    source ~/dotfiles/test.sh
-    echo "running"
     source ~/dotfiles/git-completion.bash
     source ~/dotfiles/git-prompt.sh
     source ~/dotfiles/git-PS1.bash
+}
+
+cdp () {
+    cd ~/work/purity
+    set_pb_vars
+}
+
+cdt () {
+    cd ~/work/purity_triage
+    set_pb_vars
+}
+
+pbrr () {
+    pb run runtests $1
+}
+
+pbdr () {
+    pb debug runtests $1
+}
+
+gs () {
+    git status
+}
+
+gsu () {
+    git status -uno
 }
 
 ###########################
