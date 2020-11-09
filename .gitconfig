@@ -3,11 +3,9 @@
 	commitGraph = true
 [user]
 	name = Lucas Jurgensen
-	email = ljurgensen@purestorage.com
+	email = jurgensenlucas@gmail.com
 [push]
     default = upstream
-#[branch]
-#    autosetuprebase = always
 [color "decorate"]
     tag = red
     HEAD = cyan

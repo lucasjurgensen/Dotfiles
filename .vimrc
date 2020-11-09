@@ -21,3 +21,6 @@ set expandtab
 
 " Remap escape key to jk
 :imap jk <Esc>
+
+" Adds coloring
+syntax on
