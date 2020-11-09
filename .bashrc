@@ -2,50 +2,24 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-# RUN EVERY REBOOT #
-#sudo mount -t nfs data.dogfood-speedskate.dev.purestorage.com:/pbruntests /mnt/cluster_nfs
-#sudo mount -t nfs data.dogfood-speedskate.dev.purestorage.com:/pbartifacts /mnt/pb/artifacts/
-####################
-
 ##### Lucas Additions #####
-set_pb_vars () {
-    PURITY_SRC=$(git rev-parse --show-toplevel 2>/dev/null);
-    [[ -d $PURITY_SRC/pb/bin ]] || { echo "Please run from within your purity checkout."; return 1; }
-    export PURITY_SRC
-    export PYTHONPATH=$PURITY_SRC/pb/pb-py${PYTHONPATH:+:}$PYTHONPATH
-    export PATH=$PURITY_SRC/pb/bin:$PATH
-    #export PATH=$PURITY_SRC/paws/scripts:$PATH
-  }
+
+
+
+
+alias lgg="git log --graph --pretty=color"
+alias lg="git log --pretty=color ${1:--10}"
+alias rm='rm -i'
+alias bashe="vim ~/.bashrc"
+
+color = tformat:%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr( %C(bold blue)<&an>%Creset
+alias gs="git status"
+alias gsu="git status -uno"
+alias gst="git diff-tree --no-commit-id --name-only -r ${1:-HEAD}"
 
 parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
-
-#PATH="$HOME/bin:$HOME/.local/bin:#PATH"
-#########source ~/.profile
-# Virtualenvwrapper code
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/Devel
-source /usr/local/bin/virtualenvwrapper.sh
-
-export PATH=$PATH:$HOME/work/phtest/phtest
-
-#alias lg="git log --pretty=color"
-alias lgg="git log --graph --pretty=color"
-alias rm='rm -i'
-
-set_git_prompt () {
-    source ~/dotfiles/git-completion.bash
-    source ~/dotfiles/git-prompt.sh
-    source ~/dotfiles/git-PS1.bash
-}
-
-lg () {
-    git log --pretty=color ${1:--10}
-}
-
-# Shortcut to edit bashrc
-alias bashe="vim ~/.bashrc"
 
 # Homemade tips machine
 tips () {
@@ -61,59 +35,10 @@ tips () {
 tipse() {
     vim ~/work/tips/$1_tips  
 }
-
-cdp () {
-    cd ~/work/purity
-    set_pb_vars
-    PYTHONPATH=~/work/purity/tools
-    ssh-add -q ~/.ssh/id_pure_root 2> /dev/null
-}
-
-cdt () {
-    cd ~/work/tmp
-}
-
-pbrr () {
-    pb run runtests $1
-}
-
-pbdr () {
-    pb debug runtests $1
-}
-
-fix_tests() {
-        PURITY_SRC=$(git rev-parse --show-toplevel 2>/dev/null);
-        cd $PURITY_SRC
-        virtualenv -p "/usr/bin/python2" fx_test
-        workon fx_test
-        ./tools/pure/bin/setup_fixtest
-        cd tools
-        export PYTHONPATH=$PURITY_SRC/tools/:$PYTHONPATH
-}
-
-# Gives the purity key when sshing into regular arrays
-sshpure () {
-    ssh -i ~/.ssh/id_pure_root root@$1
-}
-
-# Gives the purity key when sshing into paws stacks
-sshaws () {
-    ssh -i $PURITY_SRC/paws/scripts/common_dev_key.pem root@$1
-}
-
 # Shorthand for git status
 alias gs="git status"
 
-# Gives git status with only tracked files
-gsu () {
-    git status -uno
-}
-
-# Shows the files touched by a commit
-gst () {
-    git diff-tree --no-commit-id --name-only -r ${1:-HEAD}
-}
-###########################
+############################
 
 
 # If not running interactively, don't do anything
