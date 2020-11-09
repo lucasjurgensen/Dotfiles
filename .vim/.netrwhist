@@ -1,3 +1,4 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =1
+let g:netrw_dirhist_cnt =2
 let g:netrw_dirhist_1='/dogfood-home/eng_home/ljurgensen/work/tips'
+let g:netrw_dirhist_2='/dogfood-home/eng_home/ljurgensen/dotfiles/.git'

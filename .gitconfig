@@ -3,7 +3,7 @@
 	commitGraph = true
 [user]
 	name = Lucas Jurgensen
-	email = jurgensenlucas@gmail.com
+	email = ljurgensen@purestorage.com
 [push]
     default = upstream
 [color "decorate"]
