@@ -3,16 +3,10 @@
 # for examples
 
 ##### Lucas Additions #####
-
-
-
-
 alias lgg="git log --graph --pretty=color"
 alias lg="git log --pretty=color ${1:--10}"
 alias rm='rm -i'
 alias bashe="vim ~/.bashrc"
-
-color = tformat:%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr( %C(bold blue)<&an>%Creset
 alias gs="git status"
 alias gsu="git status -uno"
 alias gst="git diff-tree --no-commit-id --name-only -r ${1:-HEAD}"
