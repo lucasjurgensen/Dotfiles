@@ -4,13 +4,20 @@
 
 ##### Lucas Additions #####
 
+# Bash aliases
 alias lgg="git log --graph --pretty=color"
 alias lg="git log --pretty=color ${1:--10}"
 alias rm='rm -i'
 alias bashe="vim ~/.bashrc"
+
+# Git aliases
 alias gs="git status"
 alias gsu="git status -uno"
 alias gst="git diff-tree --no-commit-id --name-only -r ${1:-HEAD}"
+alias gbv="git branch -vv"
+
+# Purity aliases
+alias ppp="phtest post --branch feature/purity_in_the_cloud $1"
 
 parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
