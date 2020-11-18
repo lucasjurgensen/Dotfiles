@@ -3,6 +3,7 @@
 # for examples
 
 ##### Lucas Additions #####
+alias sshdev="ssh dev-ljurgensen"
 alias lgg="git log --graph --pretty=color"
 alias lg="git log --pretty=color ${1:--10}"
 alias rm='rm -i'
