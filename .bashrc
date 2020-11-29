@@ -3,7 +3,7 @@
 # for examples
 
 ##### Lucas Additions #####
-alias sshdev="ssh dev-ljurgensen"
+# General
 alias lgg="git log --graph --pretty=color"
 alias lg="git log --pretty=color ${1:--10}"
 alias rm='rm -i'
@@ -11,6 +11,10 @@ alias bashe="vim ~/.bashrc"
 alias gs="git status"
 alias gsu="git status -uno"
 alias gst="git diff-tree --no-commit-id --name-only -r ${1:-HEAD}"
+alias gbv="git branch -vv"
+
+# Computer Specific
+alias cdp="cd ~/Projects"
 
 parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
@@ -30,8 +34,6 @@ tips () {
 tipse() {
     vim ~/work/tips/$1_tips  
 }
-# Shorthand for git status
-alias gs="git status"
 
 ############################
 
