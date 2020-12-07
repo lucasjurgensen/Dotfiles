@@ -6,7 +6,7 @@
 
 # Bash aliases
 alias lgg="git log --graph --pretty=color"
-alias lg="git log --pretty=color ${1:--10}"
+alias lg="git log --pretty=color -${1:-10}"
 alias rm='rm -i'
 alias bashe="vim ~/.bashrc"
 
@@ -18,6 +18,11 @@ alias gbv="git branch -vv"
 
 # Purity aliases
 alias ppp="phtest post --branch feature/purity_in_the_cloud $1"
+alias sshfuse="ssh fuse-staging"
+
+
+# Commands run for setup
+stty -ixon
 
 parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
@@ -92,8 +97,12 @@ sshpure () {
 }
 
 # Gives the purity key when sshing into paws stacks
-sshaws () {
+sshcbs () {
     ssh -i $PURITY_SRC/paws/scripts/common_dev_key.pem root@$1
+}
+
+scpcbs() {
+    scp -i $PURITY_SRC/paws/scripts/common_dev_key.pem $1 $2
 }
 
 ############################
