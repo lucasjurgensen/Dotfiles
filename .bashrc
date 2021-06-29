@@ -15,11 +15,15 @@ alias gs="git status"
 alias gsu="git status -uno"
 alias gst="git diff-tree --no-commit-id --name-only -r ${1:-HEAD}"
 alias gbv="git branch -vv"
+alias lgl="git rev-parse --short HEAD"
 
 # Purity aliases
-alias ppp="phtest post --branch feature/purity_in_the_cloud $1"
+alias ppp="phtest post --mailpolicy nomail --branch feature/purity_in_the_cloud $1"
+alias pppaw="phtest post p_flow --mailpolicy nomail --branch feature/purity_in_the_cloud --extra_params BUILD_TARGET=\"ppkg purity_debug file-engine-debug purity_cloud_aws_template\""
+alias pppaz="phtest post p_flow --mailpolicy nomail --branch feature/purity_in_the_cloud --extra_params BUILD_TARGET=\"ppkg purity_debug file-engine-debug purity_cloud_azure_image\""
 alias sshfuse="ssh fuse-staging"
-
+alias cdp2="cd /local/ljurgensen/purity2"
+alias cdp3="cd /local/ljurgensen/purity3"
 
 # Commands run for setup
 stty -ixon
@@ -63,9 +67,9 @@ export PATH=$PATH:$HOME/work/phtest/phtest
 
 
 cdp () {
-    cd ~/work/purity
+    cd /local/ljurgensen/purity
     set_pb_vars
-    PYTHONPATH=~/work/purity/tools
+    PYTHONPATH=/local/ljurgensen/purity/tools
     ssh-add -q ~/.ssh/id_pure_root 2> /dev/null
 }
 
@@ -77,8 +81,16 @@ pbrr () {
     pb run runtests $1
 }
 
+pbrrc () {
+    pb run --clean-build runtests $1
+}
+
 pbdr () {
     pb debug runtests $1
+}
+
+td-azure() {
+    python3 ~/work/purity/paws/scripts/paws terminate --provider azure --name-suffix $1
 }
 
 fix_tests() {
@@ -101,8 +113,14 @@ sshcbs () {
     ssh -i $PURITY_SRC/paws/scripts/common_dev_key.pem root@$1
 }
 
-scpcbs() {
+scpcbs () {
     scp -i $PURITY_SRC/paws/scripts/common_dev_key.pem $1 $2
+}
+
+############################
+
+cless () {
+    ccze -o nolookups -A < $1 | zless -R
 }
 
 ############################
@@ -163,7 +181,7 @@ if [ -n "$force_color_prompt" ]; then
 fi
 
 if [ "$color_prompt" = yes ]; then
-    PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\]-\$ "
+    PS1="${debian_chroot:+($debian_chroot)}\[\033[01;32m\]\u@\h\[\033[00m\]:\[\033[01;34m\]\w\[\033[33m\]\$(parse_git_branch)\[\033[00m\]\$ "
  else
     PS1='${debian_chroot:+($debian_chroot)}\u@\h:\w\$ '
 fi

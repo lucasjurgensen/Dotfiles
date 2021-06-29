@@ -1,4 +1,9 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
-let g:netrw_dirhist_1='/dogfood-home/eng_home/ljurgensen/work/tips'
-let g:netrw_dirhist_2='/dogfood-home/eng_home/ljurgensen/dotfiles/.git'
+let g:netrw_dirhist_cnt =7
+let g:netrw_dirhist_1='/dogfood-home/eng_home/ljurgensen/.aws'
+let g:netrw_dirhist_2='/dogfood-home/eng_home/ljurgensen'
+let g:netrw_dirhist_3='/dogfood-home/eng_home/ljurgensen/.aws'
+let g:netrw_dirhist_4='/dogfood-home/eng_home/ljurgensen/work/purity/.git'
+let g:netrw_dirhist_5='/dogfood-home/eng_home/ljurgensen/work/purity/.git/objects'
+let g:netrw_dirhist_6='/local/ljurgensen/purity/.git'
+let g:netrw_dirhist_7='/dogfood-home/eng_home/ljurgensen/.ssh'

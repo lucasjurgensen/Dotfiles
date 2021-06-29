@@ -18,6 +18,7 @@
     # pretty one-line logs
     lg = log --pretty=color
     lgg = log --graph --pretty=color 
+	amend = commit --amend --no-edit
 [gc]
 	writeCommitGraph = true
 [color]
