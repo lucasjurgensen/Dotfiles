@@ -5,17 +5,16 @@
 ##### Lucas Additions #####
 
 # Bash aliases
-alias lgg="git log --graph --pretty=color"
-alias lg="git log --pretty=color -${1:-10}"
 alias rm='rm -i'
 alias bashe="vim ~/.bashrc"
 
 # Git aliases
 alias gs="git status"
 alias gsu="git status -uno"
-alias gst="git diff-tree --no-commit-id --name-only -r ${1:-HEAD}"
 alias gbv="git branch -vv"
-alias lgl="git rev-parse --short HEAD"
+alias glh="echo -e 'HEAD Hash: $(git rev-parse --short HEAD)\n'; git log -1 --pretty=%B"
+alias glgg="git log --graph --pretty=color"
+alias gl="git log --pretty=color -${1:-10}"
 
 # Purity aliases
 alias ppp="phtest post --mailpolicy nomail --branch feature/purity_in_the_cloud $1"
@@ -24,6 +23,11 @@ alias pppaz="phtest post p_flow --mailpolicy nomail --branch feature/purity_in_t
 alias sshfuse="ssh fuse-staging"
 alias cdp2="cd /local/ljurgensen/purity2"
 alias cdp3="cd /local/ljurgensen/purity3"
+alias cdpt="cd /local/ljurgensen/pure_tools"
+alias cdpt2="cd /local/ljurgensen/pure_tools2"
+
+# Other aliases
+alias deac="deactivate"
 
 # Commands run for setup
 stty -ixon
@@ -31,6 +35,15 @@ stty -ixon
 parse_git_branch() {
      git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/ (\1)/'
 }
+
+gst () {
+    git diff-tree --no-commit-id --name-only -r ${1:-HEAD}
+}
+
+gstr () {
+    git log --name-only --pretty=oneline --full-index ${1:-HEAD}^..${2:-HEAD} | grep -vE '^[0-9a-f]{40} ' | sort | uniq
+}
+
 
 # Homemade tips machine
 tips () {
@@ -47,7 +60,6 @@ tipse() {
     vim ~/work/tips/$1_tips  
 }
 
-
 ##### PureStorage Specific #####
 
 set_pb_vars () {
@@ -62,7 +74,7 @@ set_pb_vars () {
 # Virtualenvwrapper code
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Devel
-source /usr/local/bin/virtualenvwrapper.sh
+source ~/.local/bin/virtualenvwrapper.sh
 export PATH=$PATH:$HOME/work/phtest/phtest
 
 
@@ -74,7 +86,7 @@ cdp () {
 }
 
 cdt () {
-    cd ~/work/tmp
+    cd /local/ljurgensen/tmp
 }
 
 pbrr () {
